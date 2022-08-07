@@ -17,6 +17,7 @@ export const useAuthStore = () => {
       localStorage.setItem("token-init-date", new Date().getTime());
 
       dispatch(onLogin({ name: data.name, uid: data.uid }));
+
     } catch (error) {
       dispatch(onLogout("Incorrect credentials"));
 
@@ -26,6 +27,30 @@ export const useAuthStore = () => {
     }
   };
 
+  const startRegister = async ({ name, email, password }) => {
+
+    dispatch( onChecking() )
+
+    try {
+
+      const { data } = await calendarApi.post('/auth/new', { name, email, password})
+      console.log( data )
+
+      dispatch( onLogin({ name: data.name, uid: data.uid}))
+      
+    } catch (error) {
+
+      dispatch(onLogout( error.response.data?.msg || '---'));
+
+      setTimeout(() => {
+        dispatch(clearErrorMessage());
+      }, 1000);
+    }
+
+      
+    }
+
+
   return {
     //*Propiedades
     status,
@@ -34,5 +59,6 @@ export const useAuthStore = () => {
 
     //*Metodos
     startLogin,
+    startRegister,
   };
 };
