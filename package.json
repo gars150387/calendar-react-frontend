@@ -10,6 +10,7 @@
     "axios": "^0.26.1",
     "date-fns": "^2.29.1",
     "dotenv": "^16.0.1",
+    "polyfill-library": "^4.3.0",
     "react": "^18.2.0",
     "react-big-calendar": "^1.5.0",
     "react-datepicker": "^4.8.0",

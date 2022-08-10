@@ -1,7 +1,5 @@
 import axios from 'axios'
-// import { env } from 'process'
-// const { REACT_APP_API_URL } = getEnvVariables()
-
+// import { config } from 'dotenv'
 
 const calendarApi = axios.create({
     baseURL: 'http://localhost:3050/api'
@@ -9,7 +7,18 @@ const calendarApi = axios.create({
 })
 
 
-
 //todo: configuarar interceptores
+calendarApi.interceptors.request.use( config => {
+
+
+    config.headers = {
+        ...config.headers,
+        'x-token': localStorage.getItem('token')
+    }
+
+    return config;
+})
+
+
 
 export default calendarApi
