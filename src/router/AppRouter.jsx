@@ -9,11 +9,15 @@ export const AppRouter = () => {
 
   useEffect(() => {
     checkAuthToken();
-  }, []);
 
-  if (status === "checking") {
-    return <h3>..........</h3>;
-  }
+    setTimeout(() => {
+        if (status === "checking") {
+        return <h3>..........</h3>;
+      }
+    }, 2000);
+    
+  }, []);
+  
 
   return (
     <Routes>
